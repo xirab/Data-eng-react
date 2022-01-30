@@ -1,7 +1,8 @@
-FROM node:10
-WORKDIR /usr/src/bukky-app
+FROM node:latest as node
+RUN mkdir -p /app
+WORKDIR /app
 COPY package*.json ./
 RUN npm install
-COPY . .
+COPY . /app/
 EXPOSE 8080
-CMD [ "node", "App.js" ]
+CMD ["npm", "run", "start"]
